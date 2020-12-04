@@ -1,0 +1,3 @@
+Flask~=1.1.2
+mysql-connector-python~=8.0.22
+kafka-python~=2.0.2

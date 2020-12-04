@@ -6,7 +6,7 @@ import json
 class UserOperation:
 
     def __init__(self):
-        self.consumer = KafkaConsumer('practise',
+        self.consumer = KafkaConsumer('user',
                                       bootstrap_servers=["localhost:9092"],
                                       api_version=(0, 10)
                                       )
@@ -24,15 +24,16 @@ class UserOperation:
             value = message.value
             value = json.loads(value)
             print(value)
-
-            if value['type'] == 'C':
-                return self.create_user(value['value'])
-            elif value['type'] == 'R':
-                return self.read_values(value['value'])
-            elif value['type'] == 'U':
-                return self.update_user(value['value'])
-            elif value['type'] == 'D':
-                return self.delete_user(value['value'])
+            operation_type = value['type']
+            del value['type']
+            if operation_type == 'C':
+                return self.create_user(value)
+            elif operation_type == 'R':
+                return self.read_values(value)
+            elif operation_type == 'U':
+                return self.update_user(value)
+            elif operation_type == 'D':
+                return self.delete_user(value)
             else:
                 return "Invalid Operation token. Allowed 'type' values are 'C', 'R', 'U', 'D'"
 

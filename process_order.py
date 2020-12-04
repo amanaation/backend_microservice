@@ -7,7 +7,7 @@ import time
 class ProcessOrder:
 
     def __init__(self):
-        self.consumer = KafkaConsumer('practise',
+        self.consumer = KafkaConsumer('order',
                                       bootstrap_servers=["localhost:9092"],
                                       api_version=(0, 10)
                                       )
@@ -18,7 +18,7 @@ class ProcessOrder:
         )
         self.cursor = self.mydb.cursor(buffered=True)
         self.cursor.execute("use demodb")
-        # self.initiate_order()
+        self.initiate_order()
 
     def initiate_order(self):
         for message in self.consumer:
@@ -85,7 +85,7 @@ class ProcessOrder:
         time.sleep(2)
         values[4] = time.ctime()
         values[6] = order_notes
-        #print("............", values)
+        # print("............", values)
         self.insert_data(values)
 
     def update_balance(self, balance, uid):
@@ -94,7 +94,7 @@ class ProcessOrder:
 
 
 if __name__ == "__main__":
-    ProcessOrder().processing({'uid': '2',
-                               'amount': 30000})
+    ProcessOrder()#.processing({'uid': '2',
+                  #             'amount': 30000})
     # ProcessOrder().process_event([0,1,2,3,4,5])
     # ProcessOrder()
