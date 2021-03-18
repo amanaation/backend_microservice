@@ -6,6 +6,8 @@ import json
 class UserOperation:
 
     def __init__(self):
+        
+        # Initialise Kafka Consumer
         self.consumer = KafkaConsumer('user',
                                       bootstrap_servers=["localhost:9092"],
                                       api_version=(0, 10)
