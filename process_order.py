@@ -7,6 +7,8 @@ import time
 class ProcessOrder:
 
     def __init__(self):
+        
+        # Initialise Kafka Consumer
         self.consumer = KafkaConsumer('order',
                                       bootstrap_servers=["localhost:9092"],
                                       api_version=(0, 10)
