@@ -4,6 +4,7 @@ import ast
 from kafka import KafkaProducer
 import json
 
+# Initialise Flask app and Kafka Producer 
 app = Flask(__name__)
 producer = KafkaProducer(bootstrap_servers=["localhost:9092"],
                          api_version=(0, 10)
