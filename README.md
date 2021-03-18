@@ -1,7 +1,7 @@
 # backend_microservice
 
 ## To setup the above project you will need to install the following:
-1. Apache Kafka
+1. Apache Kafka (for real time processing)
 2. MySQL
 3. Python
 
